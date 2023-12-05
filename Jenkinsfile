@@ -4,21 +4,32 @@ pipeline {
     stage('Jenkinsfile') {
       steps {
         sh '''pipeline {
-    agent any
+    agent {
+        docker {
+            // Ganti \'nama_image_docker\' dengan nama atau ID image Docker yang sesuai
+            image \'jenkins/jenkins:lts\'
+        }
+    }
+    
     stages {
         stage(\'Build\') {
             steps {
-                echo \'Building...\'
+                // Tambahkan langkah-langkah build di sini
+                sh \'echo "Building..."\'
             }
         }
+        
         stage(\'Test\') {
             steps {
-                echo \'Testing...\'
+                // Tambahkan langkah-langkah pengujian di sini
+                sh \'echo "Testing..."\'
             }
         }
+        
         stage(\'Deploy\') {
             steps {
-                echo \'Deploying...\'
+                // Tambahkan langkah-langkah deployment di sini
+                sh \'echo "Deploying..."\'
             }
         }
     }
